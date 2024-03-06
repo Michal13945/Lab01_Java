@@ -1,21 +1,29 @@
 
-const przeliczBtn = document.querySelector("#przelicz")
-przeliczBtn.addEventListener('click',()=>{
-    var input1 = parseFloat(document.getElementById('input1').value);
-    var input2 = parseFloat(document.getElementById('input2').value);
-    var input3 = parseFloat(document.getElementById('input3').value);
-    var input4 = parseFloat(document.getElementById('input4').value);
+const inputs = document.querySelectorAll("input[type=text]");
+      const button = document.getElementById("calculateButton").addEventListener("click", calculate);
 
-    var suma = input1 + input2 + input3 + input4;
-    var srednia = suma / 4;
-    var min = Math.min(input1, input2, input3, input4);
-    var max = Math.max(input1, input2, input3, input4);
+      function calculate() {
+        let sum = 0;
+        let min = Number.MAX_VALUE;
+        let max = Number.MIN_VALUE;
+        let count = 0;
 
-    document.write("Suma: " + suma + "<br>");
-    document.write("Średnia: " + srednia + "<br>");
-    document.write("Min: " + min + "<br>");
-    document.write("Max: " + max);
-})
+        for (const input of inputs) {
+          const value = parseFloat(input.value);
+          if (isNaN(value)) continue;
+          sum += value;
+          min = Math.min(min, value);
+          max = Math.max(max, value);
+          count++;
+        }
+
+        const avg = sum / count;
+
+        document.getElementById("sum").textContent = `Sum: ${sum}`;
+        document.getElementById("sumAvg").textContent = `Average: ${avg}`;
+        document.getElementById("min").textContent = `Min: ${min}`;
+        document.getElementById("max").textContent = `Max: ${max}`;
+      }
 
 
 /*const input1 = document.querySelector('#vali')
