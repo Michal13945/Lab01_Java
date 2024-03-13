@@ -6,19 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="slider">
-        <div class="slide">
-          <img src="image1.jpg" alt="Image 1" width="700" height="500">
-        </div>
-        <div class="slide">
-          <img src="image2.jpg" alt="Image 2" width="700" height="500">
-        </div>
-        <div class="slide">
-          <img src="image3.jpg" alt="Image 3" width="700" height="500">
-        </div>
-        <button id="prev">Poprzedni</button>
-        <button id="next">Następny</button>
+    <div class="slider-container" style="width: 600px; overflow: hidden; position: relative;">
+      <div class="slides-container" style="display: flex;">
+          <div class="slide" style="flex: 0 0 600px;"><img src="image1.jpg" alt="Slide 1" style="width: 100%;"></div>
+          <div class="slide" style="flex: 0 0 600px;"><img src="image2.jpg" alt="Slide 2" style="width: 100%;"></div>
+          <div class="slide" style="flex: 0 0 600px;"><img src="image3.jpg" alt="Slide 3" style="width: 100%;"></div>
       </div>
+    </div>
+    <div class="controls">
+      <button class="prev">Previous</button>
+      <button class="next">Next</button>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
