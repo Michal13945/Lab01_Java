@@ -24,32 +24,26 @@ img1.src=""
         clearInterval(anim)
     }, 6_000) */
 
-const slider = document.getElementById('slider');
-const slides = document.getElementsByClassName('slide');
-let currentSlide = 0;
+const slidesContainer = document.querySelector('.slides-container');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
 
-function showSlide(index) {
-  slider.style.transform = `translateX(-${index * 100}%)`;
-  currentSlide = index;
-}
+let currentIndex = 0;
+const slideWidth = slides[0].clientWidth;
 
-function prevSlide() {
-  if (currentSlide === 0) {
-    showSlide(slides.length - 1);
-  } else {
-    showSlide(currentSlide - 1);
-  }
-}
+function goToSlide(index) {
+    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+    slidesContainer.style.transform = `translateX(-${slideWidth * index}px)`;
+    currentIndex = index;
+    }
 
-function nextSlide() {
-  if (currentSlide === slides.length - 1) {
-    showSlide(0);
-  } else {
-    showSlide(currentSlide + 1);
-  }
-}
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    goToSlide(currentIndex);
+    });
 
-document.getElementById('prev').addEventListener('click', prevSlide);
-document.getElementById('next').addEventListener('click', nextSlide);
-
-showSlide(currentSlide);
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    goToSlide(currentIndex);
+    });
