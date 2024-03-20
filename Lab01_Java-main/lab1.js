@@ -1,31 +1,61 @@
+let allInputs = document.querySelectorAll('input')
+const box = document.querySelector('.container')
+const btn = document.querySelector('.btn')
+const addBtn = document.querySelector('.addBtn')
+const removeBtn = document.querySelector('.removeBtn')
 
-const inputs = document.querySelectorAll("input[type=text]");
-      const button = document.getElementById("calculateButton").addEventListener("click", calculate);
+const calculate = () =>
+{
+    let sum = 0
+    let min = Number.MAX_VALUE
+    let max = Number.MIN_VALUE
+    let count = 0
+    let avg
 
-      function calculate() {
-        let sum = 0;
-        let min = Number.MAX_VALUE;
-        let max = Number.MIN_VALUE;
-        let count = 0;
-
-        for (const input of inputs) {
-          const value = parseFloat(input.value);
-          if (isNaN(value)) continue;
-          sum += value;
-          min = Math.min(min, value);
-          max = Math.max(max, value);
-          count++;
+    for(const input of allInputs)
+    {
+        let value = parseFloat(input.value)
+        if(value != null && value == value)
+        {
+            sum += value
+            min = Math.min(min, value)
+            max = Math.max(max, value)
+            count++
         }
+    }
 
-        const avg = sum / count;
+    avg = sum/count
 
-        document.getElementById("sum").textContent = `Sum: ${sum}`;
-        document.getElementById("sumAvg").textContent = `Average: ${avg}`;
-        document.getElementById("min").textContent = `Min: ${min}`;
-        document.getElementById("max").textContent = `Max: ${max}`;
-      }
+    document.querySelector('.sum').textContent = `Sum: ${sum}`
+    document.querySelector('.maxNu').textContent = `Max number: ${max}`
+    document.querySelector('.minNu').textContent = `Min number: ${min}`
+    document.querySelector('.avg').textContent = `Average: ${avg}`
+
+}
+
+const addInputText = () => 
+{ 
+    const child = document.createElement('input')
+    child.type = "text"
+    child.placeholder = "Enter the number"
+    child.style.margin = "2px"
+    document.querySelector('.container').appendChild(child)
+    allInputs = document.querySelectorAll('input')
+}
+
+const removeInputText = () =>
+{
+    box.removeChild(box.lastChild)
+    allInputs = document.querySelectorAll('input')
+    calculate()
+}
 
 
+allInputs.forEach(input => {addEventListener('change', calculate)})
+addBtn.addEventListener('click', addInputText)
+removeBtn.addEventListener('click', removeInputText)
+
+    
 /*const input1 = document.querySelector('#vali')
 console.dir(input1)
 console.log(input1.value)
