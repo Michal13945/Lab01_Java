@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Ball in the hole</title>
 </head>
+
 <body>
+    <div id="game-container">
+        <div id="ball"></div>
+        <div id="hole"></div>
+    </div>
+
+    <div id="scoreboard">
+        <p>Time: <span id="time">60</span>s</p>
+        <p>Score: <span id="score">0</span></p>
+        <button id="start-button">Start Game</button>
+    </div>
     
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
