@@ -1,49 +1,42 @@
-
-
-/* const img1 = document.createElement('img')
-const img2 = new Image()
-img1.src=""
-
-    setTimeout(
-    ()=>{
-        console.log('Ouc!')
-        const box = document.querySelector('#slider-inner')
-        box.style.transform = 'translate(200px,0px)'
-
-    },2_000) 
-
-    let positionx = 0
-    setInterval(
-        () =>{
-            const box = document.querySelector('#slider-inner')
-            box.style.transform = 'translate($(positionx)px,0px)'
-            positionx++
-        },16)
-
-    setTimeout(() => {
-        clearInterval(anim)
-    }, 6_000) */
-
-const slidesContainer = document.querySelector('.slides-container');
-const slides = document.querySelectorAll('.slide');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-
 let currentIndex = 0;
-const slideWidth = slides[0].clientWidth;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const slider = document.getElementById('slider');
 
-function goToSlide(index) {
-    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
-    slidesContainer.style.transform = `translateX(-${slideWidth * index}px)`;
-    currentIndex = index;
-    }
+document.getElementById('next').addEventListener('click', () => {
+    moveToNextSlide();
+});
 
-nextBtn.addEventListener('click', () => {
+document.getElementById('prev').addEventListener('click', () => {
+    moveToPrevSlide();
+});
+
+dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        const index = parseInt(e.target.getAttribute('data-index'));
+        moveToSlide(index);
+    });
+});
+
+function moveToNextSlide() {
     currentIndex = (currentIndex + 1) % slides.length;
-    goToSlide(currentIndex);
-    });
+    updateSlider();
+}
 
-prevBtn.addEventListener('click', () => {
+function moveToPrevSlide() {
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    goToSlide(currentIndex);
-    });
+    updateSlider();
+}
+
+function moveToSlide(index) {
+    currentIndex = index;
+    updateSlider();
+}
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+}
+
+updateSlider();
