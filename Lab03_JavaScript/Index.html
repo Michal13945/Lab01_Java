@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <title>Simple Drum Kit</title>
 </head>
 <body>
-    <audio src="./tom.wav" controls id="s1"></audio>
-    <audio src="./clap.wav" controls id="s2"></audio>
-    <audio src="./kick.wav" controls id="s3"></audio>
-    <audio src="./boom.wav" controls id="s4"></audio>
-
-    
-    <script src="./script.js"></script>
+    <div class="controls">
+        <button class="record-channel" data-channel="0">Record Channel 1</button>
+        <button class="record-channel" data-channel="1">Record Channel 2</button>
+        <button class="record-channel" data-channel="2">Record Channel 3</button>
+        <button class="record-channel" data-channel="3">Record Channel 4</button>
+        <button class="stop-recording">Stop Recording</button>
+    </div>
+    <div class="channels">
+        <div class="channel">
+            <button class="play-channel" data-channel="0">Play Channel 1</button>
+        </div>
+        <div class="channel">
+            <button class="play-channel" data-channel="1">Play Channel 2</button>
+        </div>
+        <div class="channel">
+            <button class="play-channel" data-channel="2">Play Channel 3</button>
+        </div>
+        <div class="channel">
+            <button class="play-channel" data-channel="3">Play Channel 4</button>
+        </div>
+    </div>
+    <button class="play-all">Play All Channels</button>
+    <script src="script.js"></script>
 </body>
 </html>
