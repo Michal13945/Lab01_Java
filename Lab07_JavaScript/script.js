@@ -42,10 +42,10 @@ function checkIfBallIn() {
     const holeRect = hole.getBoundingClientRect();
 
     if (
-        ballRect.left < holeRect.right &&
-        ballRect.right > holeRect.left &&
-        ballRect.top < holeRect.bottom &&
-        ballRect.bottom > holeRect.top
+        ballRect.left < (holeRect.right - 20) &&
+        ballRect.right > (holeRect.left + 20) &&
+        ballRect.top < (holeRect.bottom - 20) &&
+        ballRect.bottom > (holeRect.top + 20)
     ) {
         score++;
         scoreDisplay.textContent = score;
